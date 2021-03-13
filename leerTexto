@@ -1,0 +1,21 @@
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+int main()
+{
+    ofstream escribe("estrito.txt");
+    if(escribe.is_open()){
+        escribe<<"Linea de  texto \n";
+        escribe.close();
+    }else
+        cout<<"No funciona, siga articipando";
+
+    string linea;
+    ifstream leer("caquita.txt");
+        while(getline(leer,linea)){
+            cout<<linea<< '\n';
+        }
+    leer.close();
+    return 0;
+}
