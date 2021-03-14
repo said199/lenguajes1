@@ -1,0 +1,29 @@
+
+<Lenguaje>::-<LineasCodigo>
+<LineasCodigo>::-<Instrucciones>|<LineasCodigo><Instrucciones>
+<Instrucciones>::-<Ciclo>|<Aritmetica>|<Si>|<SiNo>
+<Ciclo>::-repetir<Condicion><LineasCodigo>fin_repetir
+<Condicion>::-(<Boleano>)
+<Booleano>::-1|0|verdad|falso|<Operando><OperadorBool><Operando>
+<Operando>::-<Id>|<Constante>
+<OperadorBool>::- >|<|==|=!|<=|>=
+<Constante>::-<EnteroCon>|<EnteroSin>|<Flotante>|<Cadena>
+<Cadena>::-<Letra>|<Cadena><Letra>
+<Letra>::- a|b|c|d|e|f|g|h|i|j|k|l|m|n|p|q|r|s|t|u|v|w|x|y|z
+<EnteroCon>::-<Signo><Digito>|<Entero><Digito>
+<EnteroSin>::-<Digito>|<EnteroSin><Digito>
+<Signo>::-+|-|Ɛ
+<Digito>::-0|1|2|3|4|5|6|7|8|9
+<Flotante>::-<Entero>.<Digito>|<Flotante><Digito>
+<SiNo>::-si<Condicion>entonces<LineasCodigo>[sino<LineasCodigo>]fin_si
+<Condicion> ::- ( <Operando><OperadorBool><Operando>)
+<SentenciaAsignación> ::-<Id> = <Aritmetica>|<Id> = <cadena>|<Id> = <Constante>
+<Id>::-<Cadena>|<Id><Digito>
+<Aritmetica>::- <operando><operadorArit><operando> |<Aritmetica><operadorArit><operando>
+<operadorArit>::- +|-|*|/|=
+<ListaParametros> ::= <ListaParametros> , <Id> |<Id>
+<HacerMientras> ::= hacer <LineasCodigo> mientras <Condicion>
+<Metodo> ::- procedimiento <Metodo> (<Parametros formales>{;<Parametros formales>}) ;
+<Parametros formales>::= <Parametros formales por valor> | <Parametros formales por variable>
+<Parametros formales por valor>::= <Identificador de variable>{, <Identificador de variable>} : <Identificador de tipo>
+<Parametros formales por variable>::=var<Identificador de variable>{, <Identificador de variable>} : <Identificador de tipo>
