@@ -1,0 +1,6 @@
+inicie
+declare var operando como entero;
+declare var suma como entero;
+	
+termine
+
