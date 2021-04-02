@@ -40,6 +40,7 @@ enum TEstado{q0, q1, qe};
 
 TEstado Estado;
 
+int  Simbolo;
 
 int  Simbolo;
 
@@ -84,7 +85,7 @@ if(Estado==q1){
 		if(Cadena.compare(TablaSimbolos[j])==0){
 			cout<<" y Palabra reservada" ;
 			break;
-			
+
 		}
 		
 	}
