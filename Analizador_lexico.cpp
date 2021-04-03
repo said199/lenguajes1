@@ -55,6 +55,8 @@ longitud= Cadena.size();
 
 while (longitud > i and Estado !=qe){
 	Simbolo = Cadena[i];
+
+
 	switch (Estado){
 		case q0:
 			if (Simbolo >= 'a' && Simbolo <='z' || Simbolo >= 'A' && Simbolo <='Z'){
@@ -75,9 +77,8 @@ while (longitud > i and Estado !=qe){
 					Estado = qe;
 				}
 				break;
-	}
-	
-	case q2:
+				
+			  case q2:
             //si es un digito
             if(Simbolo >= '0' && Simbolo <= '9'){
                 Estado= q3;
@@ -96,8 +97,25 @@ while (longitud > i and Estado !=qe){
                 }
             }
             break;
+        case q4:
+            //si es un digito
+            if(Simbolo >= '0' && Simbolo <= '9' ){
+            
+            	
+                Estado= q5;
+				}
+ 
+            break;
+            
+	}
 	i++;
+	
+ 
+    
 }
+
+          	
+
 
 if(Estado==q1){
 	cout <<"\n ["<<Cadena<< "] es: Cadena aceptada";
@@ -113,8 +131,15 @@ if(Estado==q1){
 		
 	}
 }
-else{
-	cout << " Existe un error en: "<<Cadena;
+
+else if(Estado== q5){
+	
+	
+	cout <<"\n ["<<Cadena<< "] es: Numero Racional";
+	
+}else{
+
+	cout << "\n Existe un error en: "<<Cadena;
 	cout << " Programa detenido ";
 	break;
 	
