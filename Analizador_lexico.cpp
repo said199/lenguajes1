@@ -36,7 +36,7 @@ string Cadena = textoExtraido[i];
 string TablaSimbolos[9]={"mientras", "si", "sino", "fin","inicio", "entero", "racional", "entonces",
                           "imprima"};
 
-enum TEstado{q0, q1, qe};
+enum TEstado{q0, q1, q2,q3,q4,q5,qe};
 
 TEstado Estado;
 
@@ -57,9 +57,13 @@ while (longitud > i and Estado !=qe){
 	Simbolo = Cadena[i];
 	switch (Estado){
 		case q0:
-			if (Simbolo >= 'a' && Simbolo <='z'){
+			if (Simbolo >= 'a' && Simbolo <='z' || Simbolo >= 'A' && Simbolo <='Z'){
 				Estado=q1;
+			}else
+			if(Simbolo >= '0' && Simbolo <= '9'){
+				Estado = q3;
 			}
+			
 			
 			break;
 			
@@ -72,6 +76,26 @@ while (longitud > i and Estado !=qe){
 				}
 				break;
 	}
+	
+	case q2:
+            //si es un digito
+            if(Simbolo >= '0' && Simbolo <= '9'){
+                Estado= q3;
+            }
+            break;
+        case q3:
+            //si es un digito
+            if(Simbolo >= '0' && Simbolo <= '9'){
+                Estado= q3;
+            }
+            else{
+			if(Simbolo == '.'){
+                    Estado= q4;
+                   
+				
+                }
+            }
+            break;
 	i++;
 }
 
