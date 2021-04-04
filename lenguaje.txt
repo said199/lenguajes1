@@ -1,6 +1,20 @@
-inicie
-declare var operando como entero;
-declare var suma como entero;
-	
-termine
+inicio
+racional ruedasIzquierda
+racional ruedasDerecha
+racional ruedasDelateras
+racional ruedasTraseras
+racional brazoDerecho
+racional brazoIzquierdo
+racional pedestal
+racional extender
+racional inclinarseArriba
+racional inclinarseAbajo
+Bool desplazarse
+tipoImagen captura
+captura 17.4
+captura +144545.4545
+captura -1.9
+captura 1.9.9
 
+
+fin
