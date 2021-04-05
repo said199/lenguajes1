@@ -9,7 +9,7 @@ int i=0;
 
  char textoExtraido[200][200];
 
-FILE *fichero;
+FILE *fichero, *guardar;
    fichero= fopen("lenguaje.txt","rt");
 
      if (fichero==NULL) {// si fichero no falla coge un letra dle fichero
@@ -21,18 +21,18 @@ FILE *fichero;
     	  for ( i = 0; i <200; i++)
     {
 
-        	
-        	 
+
+
 fscanf(fichero, "%s" , &textoExtraido[i]);
- 
-       	 
+
+
 string Cadena = textoExtraido[i];
 
 
-   
+
 string TablaSimbolos[10]={"mientras", "si", "sino", "fin","inicio", "entero", "racional", "entonces",
                           "imprima", "repetir"};
-                          
+
 string TablaOperando[11]={"<", ">", "+", "-",">=", "<=", "!=", "==","/","*","="};
 
 enum TEstado{q0, q1, q2,q3,q4,q5,qe};
@@ -69,10 +69,10 @@ while (longitud > k and Estado !=qe){
 			}else{
 				Estado=qe;
 			}
-			
-			
+
+
 			break;
-			
+
 			case q1:
 				if(Simbolo >= 'a' && Simbolo <='z'|| Simbolo >= 'A' && Simbolo <='Z'){
 					Estado = q1;
@@ -81,7 +81,7 @@ while (longitud > k and Estado !=qe){
 					Estado = qe;
 				}
 				break;
-				
+
 			  case q2:
             //si es un digito
             if(Simbolo >= '0' && Simbolo <= '9'){
@@ -96,32 +96,32 @@ while (longitud > k and Estado !=qe){
             else{
 			if(Simbolo == '.'){
                     Estado= q4;
-                   
-				
+
+
                 }
             }
             break;
         case q4:
             //si es un digito
             if(Simbolo >= '0' && Simbolo <= '9' ){
-            
-            	
+
+
                 Estado= q4;
 				}
- 
+
             break;
-            
+
             case q5:
-            	
+
             if(Simbolo=='='||Simbolo=='+'||Simbolo=='-'||Simbolo=='<'||Simbolo=='<'||Simbolo=='>'||Simbolo=='!'
 			||Simbolo=='*'||Simbolo=='/'){
 				Estado=q5;
 			}
 	}
 	k++;
-	
- 
-    
+
+
+
 }
 
       int conta=0;
@@ -132,67 +132,67 @@ while (longitud > k and Estado !=qe){
 
         	conta++;
         		if(conta>2){
-        			
+
 			 Estado= qe;
-			 	
+
 		break;
 		}
 
 		 }
 
         }
-        
-		}
-	}    	
 
- 
- 
- 
- 
- 
+		}
+	}
+
+
+
+
+
+
 if(Estado==q1){
 
 	cout <<"\n ["<<Cadena<< "] es: Cadena aceptada";
- 	
-	
+
+
 	int j;
 	int TamanioArreglo=sizeof TablaSimbolos/ sizeof TablaSimbolos[0];
 	for(j=0; j< TamanioArreglo; j++){
 		if(Cadena.compare(TablaSimbolos[j])==0){
 			cout<<" y Palabra reservada" ;
-			
+
 			break;
-			
+
 		}
-		
+
 	}
-} 
- 
+}
+
 else if(Estado== q4){
-	
-	
+
+
 	cout <<"\n ["<<Cadena<< "] es: Numero Racional";
 
-	
+
 }else if(Estado==q5){
 
-	
- 	
 
-	
+
+
+
 	int j;
 	int TamanioArreglo=sizeof TablaOperando/ sizeof TablaOperando[0];
 	for(j=0; j< TamanioArreglo; j++){
 		if(Cadena.compare(TablaOperando[j])==0){
-			
+
 				cout <<"\n ["<<Cadena<< "] es: Operando";
-		
+
 			break;
-			
+
 		}
-		
+
 	}
-} 
+}
 
 
 else{
@@ -200,7 +200,7 @@ else{
 	cout << "\n Existe un error en: "<<Cadena;
 	cout << " Programa detenido ";
 	break;
-	
+
 }
 
 
@@ -216,12 +216,18 @@ if(Cadena=="fin"){
 }
     fclose(fichero);
 
-
+cout<<("\n\n********************************************************************");
 cout<<("\n resumen de los elementos léxicos encontrados")<<endl;
 
+guardar = fopen("elementos_léxicos.txt", "rb");
+for (i =0 ;i<20;i++)
+{
+fscanf(guardar, "%s" , &textoExtraido[i]);
 
-FILE* archivo = fopen("elementos.txt", "rb");
+cout << "\n"<<	textoExtraido[i];
+}
 
+ fclose(guardar);
 
 
 
