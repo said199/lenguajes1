@@ -18,20 +18,22 @@ FILE *fichero;
     } else {
 
 
-    	 for ( i = 0; i <200; i++)
+    	  for ( i = 0; i <200; i++)
     {
 
-
-
+        	
+        	 
 fscanf(fichero, "%s" , &textoExtraido[i]);
-
-
+ 
+       	 
 string Cadena = textoExtraido[i];
 
 
-
-string TablaSimbolos[9]={"mientras", "si", "sino", "fin","inicio", "entero", "racional", "entonces",
-                          "imprima"};
+   
+string TablaSimbolos[10]={"mientras", "si", "sino", "fin","inicio", "entero", "racional", "entonces",
+                          "imprima", "repetir"};
+                          
+string TablaOperando[11]={"<", ">", "+", "-",">=", "<=", "!=", "==","/","*","="};
 
 enum TEstado{q0, q1, q2,q3,q4,q5,qe};
 
@@ -40,18 +42,18 @@ TEstado Estado;
 
 int  Simbolo;
 
-int i;
+int k;
 int longitud;
 
-i= longitud=0;
+k= longitud=0;
 Estado= q0;
 
 
 
 longitud= Cadena.size();
 
-while (longitud > i and Estado !=qe){
-	Simbolo = Cadena[i];
+while (longitud > k and Estado !=qe){
+	Simbolo = Cadena[k];
 
 
 	switch (Estado){
@@ -61,11 +63,16 @@ while (longitud > i and Estado !=qe){
 			}else
 			if(Simbolo >= '0' && Simbolo <= '9'){
 				Estado = q3;
+			}else if(Simbolo=='='||Simbolo=='+'||Simbolo=='-'||Simbolo=='<'||Simbolo=='<'||Simbolo=='>'
+			||Simbolo=='!'||Simbolo=='*'||Simbolo=='/'){
+				Estado=q5;
+			}else{
+				Estado=qe;
 			}
-
-
+			
+			
 			break;
-
+			
 			case q1:
 				if(Simbolo >= 'a' && Simbolo <='z'|| Simbolo >= 'A' && Simbolo <='Z'){
 					Estado = q1;
@@ -74,7 +81,7 @@ while (longitud > i and Estado !=qe){
 					Estado = qe;
 				}
 				break;
-
+				
 			  case q2:
             //si es un digito
             if(Simbolo >= '0' && Simbolo <= '9'){
@@ -89,77 +96,112 @@ while (longitud > i and Estado !=qe){
             else{
 			if(Simbolo == '.'){
                     Estado= q4;
-
-
+                   
+				
                 }
             }
             break;
         case q4:
             //si es un digito
             if(Simbolo >= '0' && Simbolo <= '9' ){
-
-
-                Estado= q5;
+            
+            	
+                Estado= q4;
 				}
-
+ 
             break;
-
+            
+            case q5:
+            	
+            if(Simbolo=='='||Simbolo=='+'||Simbolo=='-'||Simbolo=='<'||Simbolo=='<'||Simbolo=='>'||Simbolo=='!'
+			||Simbolo=='*'||Simbolo=='/'){
+				Estado=q5;
+			}
 	}
-	i++;
-
-
-
+	k++;
+	
+ 
+    
 }
 
-int conta=0;
- for(i=0; i<longitud; i++){
-  for(int j=0; j<longitud; j++){
- if (Cadena[i]==Cadena[j*1]){
- if(Cadena[i]=='-'){
+      int conta=0;
+	   for(int t=0; t<longitud; t++){
+       	for(int j=0; j<longitud; j++){
+       if(Cadena[t]==Cadena[j+1] ){
+	   if(Cadena[t]=='.'){
 
-      conta++;
-         if(conta>2){
+        	conta++;
+        		if(conta>2){
+        			
+			 Estado= qe;
+			 	
+		break;
+		}
 
-         Estado=qe;
+		 }
 
-         break;
-           }
-         }
-       }
-    }
- }
+        }
+        
+		}
+	}    	
 
-
-
-
+ 
+ 
+ 
+ 
+ 
 if(Estado==q1){
-	cout <<"\n ["<<Cadena<< "] es: Cadena aceptada";
 
+	cout <<"\n ["<<Cadena<< "] es: Cadena aceptada";
+ 	
+	
 	int j;
 	int TamanioArreglo=sizeof TablaSimbolos/ sizeof TablaSimbolos[0];
 	for(j=0; j< TamanioArreglo; j++){
 		if(Cadena.compare(TablaSimbolos[j])==0){
 			cout<<" y Palabra reservada" ;
+			
 			break;
-
+			
 		}
-
+		
 	}
-}
-
-else if(Estado== q5){
-
-
+} 
+ 
+else if(Estado== q4){
+	
+	
 	cout <<"\n ["<<Cadena<< "] es: Numero Racional";
 
-}else{
+	
+}else if(Estado==q5){
+
+	
+ 	
+
+	
+	int j;
+	int TamanioArreglo=sizeof TablaOperando/ sizeof TablaOperando[0];
+	for(j=0; j< TamanioArreglo; j++){
+		if(Cadena.compare(TablaOperando[j])==0){
+			
+				cout <<"\n ["<<Cadena<< "] es: Operando";
+		
+			break;
+			
+		}
+		
+	}
+} 
+
+
+else{
 
 	cout << "\n Existe un error en: "<<Cadena;
 	cout << " Programa detenido ";
 	break;
-
+	
 }
-
 
 
 if(Cadena=="fin"){
