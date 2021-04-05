@@ -1,5 +1,7 @@
 #include <iostream>
 #include <fstream>
+#include <string>
+
 using namespace std;
 
 int main()
@@ -9,7 +11,7 @@ int main()
         escribe<<"Linea de  texto \n";
         escribe.close();
     }else
-        cout<<"No funciona, siga articipando";
+        cout << "No funciona, siga articipando";
 
     string linea;
     ifstream leer("caquita.txt");
