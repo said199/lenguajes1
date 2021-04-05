@@ -1,8 +1,5 @@
 #include <iostream>
 
-
-
-
 using namespace std;
 
 int main()
@@ -167,7 +164,7 @@ else if(Estado== q5){
 
 if(Cadena=="fin"){
 
-		cout << "\n\n Fin del programa";
+		cout << "\n\n Fin del programa"<<endl;
 
     break;
 
@@ -176,6 +173,13 @@ if(Cadena=="fin"){
  }
 }
     fclose(fichero);
+
+
+cout<<("\n resumen de los elementos léxicos encontrados")<<endl;
+
+
+FILE* archivo = fopen("elementos.txt", "rb");
+
 
 
 
